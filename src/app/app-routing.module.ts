@@ -14,7 +14,7 @@ const routes: Routes = [{
     {path:"",component:PieComponent},
     {path: "restaurant", component: RestaurantComponent },
     {path: "customer/list", component: CustomerListComponent },
-    {path: "customer/edit", component: CustomerEditComponent },
+    {path: "customer/edit/:id", component: CustomerEditComponent },
   ]
 }];
 
