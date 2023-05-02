@@ -15,8 +15,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.option && this.myChart.setOption(this.option);
   }
-
-
   chartDom:any
   myChart:any 
   option: any;
