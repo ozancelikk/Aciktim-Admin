@@ -9,6 +9,9 @@ import { Chart1Component } from './components/chart/chart1/chart1.component';
 import { PieComponent } from './components/chart/pie/pie.component';
 import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
 import { CustomerEditComponent } from './components/customer/customer-edit/customer-edit.component';
+import { ListrestaurantComponent } from './components/restaurant/restaurant-list/confirm-restaurant/listrestaurant.component';
+import { EditrestaurantComponent } from './components/restaurant/restaurant-edit/editrestaurant/editrestaurant.component';
+import { EditpageComponent } from './components/restaurant/edit-page/editpage/editpage.component';
 
 
 
@@ -21,6 +24,9 @@ import { CustomerEditComponent } from './components/customer/customer-edit/custo
     PieComponent,
     CustomerListComponent,
     CustomerEditComponent,
+    ListrestaurantComponent,
+    EditrestaurantComponent,
+    EditpageComponent,
   ],
   imports: [
     BrowserModule,
