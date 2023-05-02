@@ -5,9 +5,7 @@ import { ChartComponent } from './components/chart/chart.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 
 const routes: Routes = [{
-  path:"",component:HomeComponent,children:[{
-    path:"",component:ChartComponent
-  },{path:"restaurant",component:RestaurantComponent}]
+  path:"",component:HomeComponent,children:[{path:"restaurant",component:RestaurantComponent}]
 }];
 
 @NgModule({
