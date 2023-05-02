@@ -1,149 +1,107 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js" integrity="sha512-v3ygConQmvH0QehvQa6gSvTE2VdBZ6wkLOlmK7Mcy2mZ0ZF9saNbbk19QeaoTHdWIEiTlWmrwAL4hS8ElnGFbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
-
-
-
-
-<div class="container-fluid overflow-hidden">
-    <div class="row vh-100 overflow-auto">
-        
-        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
-            
-            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
-                <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5">A<span class="d-none d-sm-inline">cıktım Admin </span></span>
-                    
-                </a>
-                
-                <div class="li-items">
-                    <hr>
-                   
-                    <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
- 
-                          
-                            <li class="nav-item">
-                                
-                                <a href="#" class="nav-link px-sm-0 px-2">
-                                    <i class="fa-solid fa-house"></i><span class="ms-1 d-none d-sm-inline">Ana Sayfa</span>
-                                </a>
-                            </li>
-                            
-                            <li>
-                                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
-                                    <i class="fa-solid fa-utensils"></i><span class="ms-1 d-none d-sm-inline">Restorant İşlemleri</span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-sm-0 px-2">
-                                    <i class="fa-regular fa-user"></i><span class="ms-1 d-none d-sm-inline">Kullanıcı İşlemleri</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-sm-0 px-2">
-                                    <i class="fa-solid fa-basket-shopping"></i><span class="ms-1 d-none d-sm-inline">Sipariş İşlemleri</span></a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="nav-link px-sm-0 px-2">
-                                    <i class="fa-solid fa-table"></i><span class="ms-1 d-none d-sm-inline">Tablolar</span>
-                                </a>
-                            </li>
-                            <!-- <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">dropdown</span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
-                                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                                </ul>
-                            </li> -->
-                            
-                            <!-- <li>
-                                <a href="#" class="nav-link px-sm-0 px-2">
-                                    <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                            </li> -->
-                        
-                        
-                    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<aside class="sidebar" [ngClass]="{'open': isSidebarOpen}">
+    <h6 class="mb-4 title"> Acıktım ADMIN</h6>
+    <div class="sidebar-header">
+    </div>
+    <div class="sidebar-body">
+        <ul class="nav flex-column">
+            <li class="nav-item mb-3">
+                <div class="dropdown">
+                    <button style="color: white;"
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                    <i class="fa-solid fa-user"></i><span> Kullanıcı İşlemleri</span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-                    </div>     
-                <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">Admin</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                  </div>
+            </li>
+            <li class="nav-item mb-3">
+                <div class="dropdown">
+                    <button style="color: white;"
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                    <i class="fa-solid fa-utensils"></i> <span> Restoran İşlemleri</span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex flex-column h-sm-100">
-            <main class="row overflow-auto">
-                <div class="col pt-0">
-                   <div class="ust">
-                    <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <span class="input-group-text border-0" id="search-addon">
-                          <i class="fas fa-search"></i>
-
-                         
-                          
-                        </span>
-                        
-                    </div>
-                      <div class="admin">
-                        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
-                                <span class="d-none d-sm-inline mx-1">Admin</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Sign out</a></li>
-                            </ul>
-                        </div>
-                    </div> 
-                      
-                        
-                       <!--  <p class="lead">An example multi-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single menu is be open at a time.</p> -->
-                    </div> 
-                    <hr />
-                    <!-- <h3>More content...</h3> -->
-                  
-                    <router-outlet></router-outlet>
-
-
-                    
-                </div>
-                
-            
-
-            </main>
-            <footer class="row bg-light py-4 mt-auto">
-
-               <div class="copyright">
-                  <div class="col">Copyright ©Aciktim 2023 </div>
-                </div> 
-            </footer>
+                  </div>
+            </li>
+            <li class="nav-item mb-3">
+                <div class="dropdown">
+                    <button style="color: white;"
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                    <i class="fa-solid fa-bars"></i><span> Sipariş İşlemleri</span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
+            </li>
+        </ul>
+        <div class="dropdown settings">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-gear"></i>
+                <span class="d-none d-sm-inline mx-1">Ayarlar</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
         </div>
     </div>
-</div>
+</aside>
+<main role="main" [ngClass]="{'main-open': isSidebarOpen}" class="main">
+    <div class="container">
+        <div id="aside-button-container" class="d-flex">
+            <button class="btn  aside_button" type="button" (click)="toggleSidebar()"
+                aria-label="Toggle navigation">
+                <i class="fa-solid fa-sliders"></i>
+            </button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h1>Acıktım Admin Paneli</h1>
+        </div>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam facilisis nulla vitae tellus pretium suscipit.
+            Vestibulum rhoncus tellus vel hendrerit euismod. Donec id turpis dolor. Aliquam a nulla non sapien hendrerit
+            dignissim. Sed imperdiet consectetur erat, at malesuada est suscipit nec. Sed eget urna eu turpis aliquam
+            luctus sed sit amet arcu. Duis malesuada sapien vel erat maximus egestas. Integer quis nisi ut lorem varius
+            ullamcorper vitae ut tellus. Fusce nec risus eu urna blandit aliquam ut in augue. Sed varius tristique
+            mauris et ultrices.</p>
+        <p>Phasellus volutpat metus et neque varius, vel consequat augue dictum. Sed interdum, nisi sed viverra
+            lobortis, nunc arcu venenatis odio, ac lobortis lacus neque at ex. Aenean vel semper ex. Aliquam a lectus
+            eget odio blandit posuere. Nulla facilisi. Sed viverra mauris non nisi blandit dignissim. Fusce rutrum risus
+            vitae risus tincidunt, nec congue odio euismod. Proin malesuada sed massa a mattis. Nam id enim id nisi
+            consectetur rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+            egestas.</p>
+    </div>
+</main>
