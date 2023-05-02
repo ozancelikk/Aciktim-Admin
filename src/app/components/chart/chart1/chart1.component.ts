@@ -8,24 +8,29 @@ import { EChartsOption } from 'echarts';
 echarts.use([GridComponent, LineChart, CanvasRenderer, UniversalTransition]);
 @Component({
   selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  templateUrl: './chart1.component.html',
+  styleUrls: ['./chart1.component.css']
 })
-export class ChartComponent implements OnInit, AfterViewInit {
+export class Chart1Component implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.option && this.myChart.setOption(this.option);
   }
-  chartDom:any
-  myChart:any 
+  chartDom: any
+  myChart: any
   option: any;
 
   ngOnInit(): void {
+    this.createChart();
+
+  }
+
+  createChart() {
     this.chartDom = document.getElementById('chart-container')!;
     this.myChart = echarts.init(this.chartDom);
     this.option = {
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: ['Ocak', 'Nisan', 'Temmuz', 'Ekim', 'Aralık']
       },
       yAxis: {
         type: 'value'
@@ -37,18 +42,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
         }
       ]
     };
- 
   }
-  
 
+  createPie() {
 
-
-
-  
-   
-
-  
-  
-  
- 
+  }
 }
