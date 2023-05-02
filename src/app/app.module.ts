@@ -13,6 +13,10 @@ import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CustomerPipePipe } from './pipes/customer-pipe.pipe';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { ListrestaurantComponent } from './components/restaurant/restaurant-list/confirm-restaurant/listrestaurant.component';
+import { EditrestaurantComponent } from './components/restaurant/restaurant-edit/editrestaurant/editrestaurant.component';
+import { EditpageComponent } from './components/restaurant/edit-page/editpage/editpage.component';
+
 
 
 
@@ -26,6 +30,9 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
     CustomerListComponent,
     CustomerEditComponent,
     CustomerPipePipe,
+    ListrestaurantComponent,
+    EditrestaurantComponent,
+    EditpageComponent,
   ],
   imports: [
     BrowserModule,
