@@ -17,11 +17,13 @@ const routes: Routes = [{
     {path:"",component:PieComponent},
     {path: "restaurant", component: RestaurantComponent },
     {path: "customer/list", component: CustomerListComponent },
+    {path: "customer/edit/:id", component: CustomerEditComponent },
     {path: "customer/edit", component: CustomerEditComponent },
     {path: "restaurant", component: RestaurantComponent},
     {path: "restaurant/confirm", component: ListrestaurantComponent},
     {path: "restaurant/list", component: EditrestaurantComponent},
     {path: "restaurant/edit", component: EditpageComponent}
+
   ]
 }];
 
