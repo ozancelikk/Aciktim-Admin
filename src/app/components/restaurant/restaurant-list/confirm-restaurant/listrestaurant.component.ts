@@ -54,4 +54,13 @@ export class ListrestaurantComponent implements OnInit {
     }
   }
 
+  deleteRestaurant(restaurantId:string) {
+    if(confirm("Restoranı reddetmek istediğinizden emin misiniz ? ")) 
+    {
+      this.restaurantService.deleteRestaurant(restaurantId).subscribe(response=>{
+        response.success ? this.toastrService.success("Restoran Reddedildi","BAŞARILI") : null
+        this.getPassiveRestaurants();
+      })
+    }
+  }
 }

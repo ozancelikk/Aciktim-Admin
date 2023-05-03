@@ -28,7 +28,7 @@ const routes: Routes = [{
     {path: "restaurant/edit/:id", component: EditpageComponent},
     {path: "order/orderlist", component: OrderlistComponent},
     {path: "order/restaurantorder", component: RestaurantorderComponent},
-    {path: "order/orderdetail", component: OrderdetailComponent}
+    {path: "order/orderdetails/:id", component: OrderdetailComponent}
 
 
   ]

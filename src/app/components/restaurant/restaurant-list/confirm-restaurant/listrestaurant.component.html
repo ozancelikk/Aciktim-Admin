@@ -10,7 +10,7 @@
   <input [(ngModel)]="filter" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 </div>
 
-<div class="alert alert-secondary" role="alert" *ngIf="filter?.length>=2">
+<div class="alert alert-info" role="alert" *ngIf="filter?.length>=2">
   {{filter}}  aradınız
 </div>
 
@@ -51,7 +51,7 @@
       </td>
       <td>
         <div class="confirm" (click)="getCategoryName(restaurant.categoryId)">
-          <i (click)="dialog.showModal()" class="fa-solid fa-magnifying-glass fa-lg"></i>
+          <i (click)="dialog.showModal()" class="fa-solid fa-magnifying-glass fa-lg pointer"></i>
           <dialog #dialog>
             <div class="d-flex align-items-center justify-content-center x">
               <div class="dialog">
@@ -79,7 +79,7 @@
         </div>
       </td>
       <td>
-        <a href="#">
+        <a class="pointer" (click)="deleteRestaurant(restaurant.id)">
           <div class="deny">
             <i class="fa-solid fa-x"></i>
           </div>
