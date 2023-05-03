@@ -1,14 +1,17 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
 <h4 style="font-family: 'Lobster Two', cursive;" class="mb-4">Restoran Listesi</h4>
+<div *ngIf="restaurants">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Restoran İsmine Göre Ara...</label>
+    <input type="text" [(ngModel)]="filter" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="alert alert-info" role="alert" *ngIf="filter?.length >= 2">
+    {{filter}} aradınız
+  </div>
 
-
-
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">İsime Göre Ara...</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    </div>
-
-<table class="table align-middle mb-0 bg-white">
+  <table class="table align-middle mb-0 bg-white">
     <thead class="bg-light">
       <tr>
         <th>Restoran Adı</th>
@@ -17,145 +20,48 @@
         <th>Açılış Saati</th>
         <th>Kapanış Saati</th>
         <th>Telefon Numarası</th>
-        <th>Kayıt Tarihi</th>
         <th>Düzenle</th>
         <th>Sil</th>
-       
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let restaurant of restaurants|restaurantPipe:filter">
         <td>
           <div class="d-flex align-items-center">
-            <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-                />
+            <img [src]="getImagePath(restaurant)" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
             <div class="ms-3">
-              <p class="fw-bold mb-1">Burger King</p>
+              <p class="fw-bold mb-1">{{restaurant.restaurantName}}</p>
             </div>
           </div>
         </td>
         <td>
-          <p class="fw-normal mb-1">154185451</p>
+          <p class="fw-normal mb-1">{{restaurant.taxNumber}}</p>
         </td>
         <td>
-          <span>yusufgk125@gmail.com</span>
+          <span>{{restaurant.mailAddress}}</span>
         </td>
-        <td>12.00</td>
-        <td>23.00</td>
+        <td>{{restaurant.openingTime}}</td>
+        <td>{{restaurant.closingTime}}</td>
         <td>
-          +90 536 228 26 96
+          {{restaurant.phoneNumber}}
         </td>
         <td>
-            24.03.2023
-          </td>
-          <td>
-            <a href="restaurant/edit">
-                <div class="confirm">
-                    <i class="fa-solid fa-pen"></i>
-               </div> 
-            </a>
-          </td>
-          <td>
-            <a href="#">
-                <div class="deny">
-                    <i class="fa-solid fa-trash"></i>
-
-                </div>    
-            </a>
-          </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="d-flex align-items-center">
-            <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-                />
-            <div class="ms-3">
-              <p class="fw-bold mb-1">Burger King</p>
+          <a routerLink="/restaurant/edit/{{restaurant.id}}">
+            <div class="confirm">
+              <i class="fa-solid fa-pen"></i>
             </div>
-          </div>
+          </a>
         </td>
         <td>
-          <p class="fw-normal mb-1">154185451</p>
-        </td>
-        <td>
-          <span>yusufgk125@gmail.com</span>
-        </td>
-        <td>12.00</td>
-        <td>23.00</td>
-        <td>
-          +90 536 228 26 96
-        </td>
-        <td>
-            24.03.2023
-          </td>
-          <td>
-            <a href="restaurant/edit">
-                <div class="confirm">
-                    <i class="fa-solid fa-pen"></i>
-               </div> 
-            </a>
-          </td>
-          <td>
-            <a href="#">
-                <div class="deny">
-                    <i class="fa-solid fa-trash"></i>
-
-                </div>
-            </a>
-          </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="d-flex align-items-center">
-            <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-                />
-            <div class="ms-3">
-              <p class="fw-bold mb-1">Burger King</p>
+          <a class="delete" (click)="deleteRestaurant(restaurant.id)">
+            <div class="deny">
+              <i class="fa-solid fa-trash"></i>
             </div>
-          </div>
+          </a>
         </td>
-        <td>
-          <p class="fw-normal mb-1">154185451</p>
-        </td>
-        <td>
-          <span>yusufgk125@gmail.com</span>
-        </td>
-        <td>12.00</td>
-        <td>23.00</td>
-        <td>
-          +90 536 228 26 96
-        </td>
-        <td>
-            24.03.2023
-          </td>
-          <td>
-            <a href="restaurant/edit">
-               <div class="confirm">
-                <i class="fa-solid fa-pen"></i>
-               </div>  
-            </a>
-          </td>
-          <td>
-            <a href="#">
-                <div class="deny">
-                    <i class="fa-solid fa-trash"></i>
-
-                </div>
-            </a>
-          </td>
       </tr>
 
     </tbody>
   </table>
+
+</div>
