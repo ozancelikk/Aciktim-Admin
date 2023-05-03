@@ -9,6 +9,9 @@ import { CustomerEditComponent } from './components/customer/customer-edit/custo
 import { ListrestaurantComponent } from './components/restaurant/restaurant-list/confirm-restaurant/listrestaurant.component';
 import { EditrestaurantComponent } from './components/restaurant/restaurant-edit/editrestaurant/editrestaurant.component';
 import { EditpageComponent } from './components/restaurant/edit-page/editpage/editpage.component';
+import { OrderlistComponent } from './components/order/orderlist/orderlist.component';
+import { RestaurantorderComponent } from './components/order/restaurant-order/restaurantorder/restaurantorder.component';
+import { OrderdetailComponent } from './components/order/order-detail/orderdetail/orderdetail.component';
 
 const routes: Routes = [{
   path: "", component: HomeComponent, children: 
@@ -22,7 +25,11 @@ const routes: Routes = [{
     {path: "restaurant", component: RestaurantComponent},
     {path: "restaurant/confirm", component: ListrestaurantComponent},
     {path: "restaurant/list", component: EditrestaurantComponent},
-    {path: "restaurant/edit", component: EditpageComponent}
+    {path: "restaurant/edit", component: EditpageComponent},
+    {path: "order/orderlist", component: OrderlistComponent},
+    {path: "order/restaurantorder", component: RestaurantorderComponent},
+    {path: "order/orderdetail", component: OrderdetailComponent}
+
 
   ]
 }];

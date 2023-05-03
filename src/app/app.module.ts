@@ -16,6 +16,10 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { ListrestaurantComponent } from './components/restaurant/restaurant-list/confirm-restaurant/listrestaurant.component';
 import { EditrestaurantComponent } from './components/restaurant/restaurant-edit/editrestaurant/editrestaurant.component';
 import { EditpageComponent } from './components/restaurant/edit-page/editpage/editpage.component';
+import { RestaurantorderComponent } from './components/order/restaurant-order/restaurantorder/restaurantorder.component';
+import { OrderdetailComponent } from './components/order/order-detail/orderdetail/orderdetail.component';
+
+
 
 
 
@@ -33,6 +37,9 @@ import { EditpageComponent } from './components/restaurant/edit-page/editpage/ed
     ListrestaurantComponent,
     EditrestaurantComponent,
     EditpageComponent,
+    RestaurantorderComponent,
+    OrderdetailComponent,
+   
   ],
   imports: [
     BrowserModule,
