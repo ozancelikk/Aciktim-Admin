@@ -5,3 +5,6 @@
 .deny{
     color: red;
 }
+.delete:hover {
+    cursor: pointer;
+}

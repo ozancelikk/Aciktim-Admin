@@ -18,6 +18,7 @@ import { EditrestaurantComponent } from './components/restaurant/restaurant-edit
 import { EditpageComponent } from './components/restaurant/edit-page/editpage/editpage.component';
 import { RestaurantorderComponent } from './components/order/restaurant-order/restaurantorder/restaurantorder.component';
 import { OrderdetailComponent } from './components/order/order-detail/orderdetail/orderdetail.component';
+import { RestaurantPipePipe } from './pipes/restaurant-pipe.pipe';
 
 
 
@@ -39,6 +40,7 @@ import { OrderdetailComponent } from './components/order/order-detail/orderdetai
     EditpageComponent,
     RestaurantorderComponent,
     OrderdetailComponent,
+    RestaurantPipePipe,
    
   ],
   imports: [
