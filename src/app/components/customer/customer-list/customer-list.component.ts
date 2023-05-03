@@ -20,7 +20,6 @@ export class CustomerListComponent implements OnInit {
   getCustomerDetails() {
     this.customerService.getCustomerDetails().subscribe(response=>{
       response.success ? this.customers = response.data:null
-      console.log(this.customers);  
     },error=>this.toastrService.error(error.error))
   }
 
