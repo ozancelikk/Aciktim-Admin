@@ -1,28 +1,43 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
 <h4 style="font-family: 'Lobster Two', cursive;" class="mb-4">Sipariş Listesi</h4>
+<div class="all">
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label">Sipariş ID'Ye Göre Ara...</label>
+  <div class="d-flex justify-content-between">
+    <input [(ngModel)]="filter" type="text" class="form-control" aria-describedby="emailHelp">
+    <button (click)="getOrderDetailsByOrderId(filter)"  style="margin-left: 1rem;background-color:#5D196A;color: white;" class="btn" >Ara</button>
+  </div>
+</div>
 
+<table class="table align-middle mb-0 bg-white" *ngIf="order">
+  <thead class="bg-light">
+    <tr>
+      <th>İsim-Soy isim</th>
+      <th>Restoran Adı</th>
 
+      <th>Sipariş Durumu</th>
+      <th>Tahmini Teslimat Süresi</th>
+      <th>Sipariş Açıklaması</th>
+      <th>Sipariş Adresi</th>
+      <th>Sipariş Tutarı</th>
 
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">İsime Göre Ara...</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    </div>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{order.firstName}}</td>
+      <td>{{order.restaurantName}}</td>
+      <td>{{order.orderStatus}}</td>
+      <td>{{order.estimatedTime}}</td>
+      <td>{{order.orderDescription}}</td>
+      <td>{{order.address}}</td>
+      <td>{{totalPrice}} TL</td>
 
-<table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-      <tr>
-        <th>İsim-Soy isim</th>
-        <th>Restoran Adı</th>
-        <th>Sipariş Tutarı</th>
-        <th>Sipariş Durumu</th>
-        <th>Müşteri Telefon No</th>
-        <th>Tahmini Teslimat Süresi</th>
-        <th>Sipariş Türü</th>
-        <th>Sipariş Açıklaması</th>
-        <th>Sipariş Adresi</th>
-       
-      </tr>
-    </thead>
-   
-   <h3>Veri Tabanından Id Sorgusu yapılarak Tablo doldurulacak</h3>
-  
+    </tr>
+  </tbody>
+
+</table>
+
+</div>
