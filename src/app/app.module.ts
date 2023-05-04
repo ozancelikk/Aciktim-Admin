@@ -22,10 +22,7 @@ import { RestaurantPipePipe } from './pipes/restaurant-pipe.pipe';
 import { OrderPipe } from './pipes/order.pipe';
 import { OrderCustomerIdPipe } from './pipes/order-customer-id.pipe';
 import { OrderlistComponent } from './components/order/orderlist/orderlist.component';
-
-
-
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -54,6 +51,7 @@ import { OrderlistComponent } from './components/order/orderlist/orderlist.compo
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    DragDropModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

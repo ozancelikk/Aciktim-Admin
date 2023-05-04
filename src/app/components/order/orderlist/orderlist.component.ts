@@ -20,7 +20,6 @@ export class OrderlistComponent implements OnInit {
     this.totalPrice = 0;
     this.orderService.getOrderDetailsByOrderId(orderId).subscribe(response=>{
       response.success ? this.order = response.data : null;
-      console.log(this.order); 
       for (let i = 0; i < this.order.menus.length; i++) {
         this.totalPrice += this.order.menus[i].orderPrice;
       }

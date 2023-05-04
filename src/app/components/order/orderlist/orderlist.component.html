@@ -31,7 +31,7 @@
       <td>{{order.restaurantName}}</td>
       <td>{{order.orderStatus}}</td>
       <td>{{order.estimatedTime}}</td>
-      <td>{{order.orderDescription}}</td>
+      <td>{{order.orderDescription ? order.orderDescription : "Sipariş Açıklaması Yok"}}</td>
       <td>{{order.address}}</td>
       <td>{{totalPrice}} TL</td>
 

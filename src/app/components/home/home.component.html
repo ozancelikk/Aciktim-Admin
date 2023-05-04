@@ -43,7 +43,6 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" routerLink="order/orderlist">Siperiş Listesi</a></li>
                         <li><a class="dropdown-item" routerLink="order/restaurantorder">Restoran Siparişleri</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
             </li>
@@ -77,8 +76,15 @@
             <h2 style="font-family: 'Lobster Two', cursive;">Acıktım Admin Paneli</h2>
         </div>
         <hr>
-        <div class="contanier">
-            <router-outlet></router-outlet>
+        <div>
+            <div class="container">
+                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+                  </div>
+                <br><br><br>
+            </div>
+            <app-chart (dataEvent)="childEvent($event)"></app-chart>
+            <app-pie></app-pie>
         </div>
     </div>
 </main>
