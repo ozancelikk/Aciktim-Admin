@@ -2,6 +2,7 @@ export interface Order {
     id:string;
     customerId:string;
     firstName:string;
+    lastName:string;
     restaurantId:string;
     restaurantName:string;
     orderDescription:string;
