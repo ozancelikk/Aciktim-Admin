@@ -16,6 +16,9 @@
             "outputPath": "dist/aciktim-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "rxjs-compat"
+           ],
             "polyfills": [
               "zone.js"
             ],
