@@ -24,4 +24,8 @@ export class OrderService {
   getOrderDetailsByOrderId(orderId:string):Observable<SingleResponseModel<Order>> {
     return this.httpClient.get<SingleResponseModel<Order>>(this.apiURL +"/getbyid?id=" + orderId);
   }
+  
+  getAllOrders() : Observable<ListResponseModel<Order>> {
+    return this.httpClient.get<ListResponseModel<Order>>(this.apiURL + "/GetAllOrders");
+  }
 }

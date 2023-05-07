@@ -1,0 +1,34 @@
+.resizable {
+  resize: both;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+}
+
+.chart {
+  width: 100%;
+  height: 500px;
+}
+
+
+.example-box {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+}
+
+.open:hover {
+  transition: 1s all;
+  scale: 1.10;
+}
+
+.example-boundary {
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+  border: dotted #ccc 2px;
+}

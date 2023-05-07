@@ -17,7 +17,8 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "allowedCommonJsDependencies": [
-              "rxjs-compat"
+              "rxjs-compat",
+              "highcharts"
            ],
             "polyfills": [
               "zone.js"
