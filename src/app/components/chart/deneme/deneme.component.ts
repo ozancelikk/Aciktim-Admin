@@ -1,7 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/category/Category';
+import { MaxOrderDto } from 'src/app/models/order/maxOrderDto';
 import { Order } from 'src/app/models/order/order';
+import { OrdersByDate } from 'src/app/models/order/ordersByDateDto';
+import { RestaurantOrderNumber } from 'src/app/models/restaurant/restaurantOrderNumber';
+import { CategoryService } from 'src/app/services/category/category.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 import { OrderService } from 'src/app/services/order/order.service';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
 
@@ -13,12 +19,209 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
 export class DenemeComponent implements OnInit {
   profitByMonths: number[] = [0, 0, 0, 0];
   orders: Order[];
+  todayOrders: OrdersByDate;
+  yesterdayOrders: OrdersByDate;
+  restaurantOrderNumbers: RestaurantOrderNumber[];
   noShow: boolean = false;
   linechart: any;
-  constructor(private orderService: OrderService, private toastrService: ToastrService,private restaurantService:RestaurantService) { }
+  piechart: any;
+  maxOrders:MaxOrderDto[];
+  piechartcategory: any;
+  piechartorder:any;
+  piechartmaxorder:any;
+  categories: Category[];
+  orderNumbers: any = new Array(0);
+
+
+  constructor(private orderService: OrderService, private toastrService: ToastrService,
+    private restaurantService: RestaurantService, private categoryService: CategoryService,
+    private customerService:CustomerService) { }
   ngOnInit(): void {
-    this.getAllOrders;
+    
+    this.getAllOrders();
     this.createLineChart();
+    this.createPieChart();
+    this.getCategories();
+    this.createPieChartForCategories();
+    this.createPieChartForOrders();
+    this.getMax10Orders();
+    this.createPieChartForMaxOrders();
+
+  }
+
+  getMax10Orders(successCallBack?:()=>void) {
+    this.customerService.getMax10Orders().subscribe(response=>{
+      response.success ? this.maxOrders = response.data : this.toastrService.error("Bir hata meydana geldi","HATA");
+      if(successCallBack) {
+        successCallBack();
+      }
+      
+    })
+  }
+
+  createPieChartForMaxOrders() {
+    this.getMax10Orders(() => {
+      let data = [];
+      for (let i = 0; i < this.maxOrders.length; i++) {
+        data.push([this.maxOrders[i].customerName , this.maxOrders[i].orderNumber]);
+      }
+      this.piechartmaxorder = new Chart
+        (
+          {
+            chart: {
+              plotBorderWidth: null,
+              plotShadow: false
+            },
+            accessibility: {
+              enabled: false
+            },
+            title: {
+              text: 'Dün VS Bugün Satış Sayıları'
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+              pie: {
+                shadow: false,
+                center: ['50%', '50%'],
+                size: '100%',
+                innerSize: '20%'
+              }
+            },
+            series: [{
+              type: 'pie',
+              name: 'Sipariş Oranı',
+              data: data
+            }
+            ]
+          }
+        )
+    })
+  }
+
+  getCategories(successCallBack?: () => void) {
+    this.categoryService.getAllCategories().subscribe(response => {
+      response.success ? this.categories = response.data : this.toastrService.error("Bir hata meydana geldi", "HATA");
+      if (successCallBack) {
+        successCallBack();
+      }
+
+    })
+  }
+
+  getOrdersByDate(successCallBack?: () => void) {
+    this.orderService.getTodayOrders().subscribe(response => {
+      response.success ? this.todayOrders = response.data : this.toastrService.error("Bir hata meydana geldi", "HATA")
+  
+      this.orderService.getYesterdayOrders().subscribe(response => {
+        response.success ? this.yesterdayOrders = response.data : this.toastrService.error("Bir hata meydana geldi", "HATA")
+        if (successCallBack) {
+          successCallBack();
+        }
+      })
+    })
+  }
+
+  createPieChartForOrders() {
+    this.getOrdersByDate(() => {
+      let data = [];
+      data.push([this.todayOrders.date + " (Bugün)", this.todayOrders.count]);
+      data.push([this.yesterdayOrders.date + " (Dün)", this.yesterdayOrders.count]);
+
+      this.piechartorder = new Chart
+        (
+          {
+            chart: {
+              plotBorderWidth: null,
+              plotShadow: false
+            },
+            accessibility: {
+              enabled: false
+            },
+            title: {
+              text: 'Dün VS Bugün Satış Sayıları'
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+              pie: {
+                shadow: false,
+                center: ['50%', '50%'],
+                size: '85%',
+                innerSize: '20%'
+              }
+            },
+            series: [{
+              type: 'pie',
+              name: 'Satış Oranı',
+              data: data
+            }
+            ]
+          }
+        )
+    })
+  }
+
+  createPieChartForCategories() {
+    this.getCategories(() => {
+      let data = [];
+      let number = 100 / this.categories.length;
+      for (let i = 0; i < this.categories.length; i++) {
+        data.push([this.categories[i].categoryName, number]);
+      }
+      this.piechartcategory = new Chart
+        (
+          {
+            chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: 0,
+              plotShadow: false
+            },
+            accessibility: {
+              enabled: false,
+              point: {
+                valueSuffix: '%'
+              }
+            },
+            title: {
+              text: 'Var Olan </br> Kategoriler',
+              align: 'center',
+              verticalAlign: 'middle',
+              y: 60
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+              pie: {
+                dataLabels: {
+                  enabled: true,
+                  distance: -50,
+                  style: {
+                    fontWeight: 'bold',
+                    color: 'white'
+                  }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%'],
+                size: '110%'
+              }
+            },
+
+            series: [{
+              type: 'pie',
+              name: 'Satış Oranı',
+              innerSize: '50%',
+              data: data
+            }
+            ]
+          }
+        )
+    })
+
   }
 
   getAllOrders(successCallBack?: () => void) {
@@ -30,8 +233,14 @@ export class DenemeComponent implements OnInit {
     })
   }
 
-  getRestaurants() {
-    
+  getRestaurantOrderNumbers(successCallBack?: () => void) {
+    this.restaurantService.getRestaurantsOrderNumber().subscribe(response => {
+      response.success ? this.restaurantOrderNumbers = response.data : this.toastrService.error("Bir hata meydana geldi.", "HATA");
+      if (successCallBack) {
+        successCallBack();
+      }
+
+    })
   }
 
   splitProfitByMonths(successCallBack?: () => void) {
@@ -69,7 +278,7 @@ export class DenemeComponent implements OnInit {
         },
         yAxis: {
           title: {
-            text: "Kazanılan Miktar" ,style:{fontSize:"20"}
+            text: "Kazanılan Miktar  (TL)", style: { fontSize: "20" }
           }
         },
         accessibility: {
@@ -96,6 +305,51 @@ export class DenemeComponent implements OnInit {
     });
 
   }
+
+  createPieChart() {
+    this.getRestaurantOrderNumbers(() => {
+      for (let i = 0; i < this.restaurantOrderNumbers.length; i++) {
+        this.orderNumbers.push(this.restaurantOrderNumbers[i]);
+      }
+      let data = [];
+      for (let i = 0; i < this.orderNumbers.length; i++) {
+        data.push([this.orderNumbers[i].restaurantName, this.orderNumbers[i].restaurantOrderNumber]);
+      }
+      this.piechart = new Chart
+        (
+          {
+            chart: {
+              plotBorderWidth: null,
+              plotShadow: false
+            },
+            accessibility: {
+              enabled: false
+            },
+            title: {
+              text: 'Restoran Satış Grafiği'
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+              pie: {
+                shadow: false,
+                center: ['50%', '50%'],
+                size: '85%',
+                innerSize: '20%'
+              }
+            },
+            series: [{
+              type: 'pie',
+              name: 'Satış Oranı',
+              data: data
+            }
+            ]
+          }
+        )
+    })
+  }
+
   changeVisibility() {
     this.noShow = !this.noShow
   }
@@ -108,51 +362,5 @@ export class DenemeComponent implements OnInit {
       return ''
     }
   }
-
-
-  piechart = new Chart
-    (
-      {
-        chart: {
-          plotBorderWidth: null,
-          plotShadow: false
-        },
-        accessibility: {
-          enabled: false
-        },
-        title: {
-          text: 'Browser market shares at a specific website, 2014'
-        },
-        tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-          pie: {
-            shadow: false,
-            center: ['50%', '50%'],
-            size: '45%',
-            innerSize: '20%'
-          }
-        },
-        series: [{
-          type: 'pie',
-          name: 'Browser share',
-          data: [
-            ['Firefox', 45.0],
-            ['IE', 26.8],
-            {
-              name: 'Chrome',
-              y: 12.8,
-              sliced: true,
-              selected: true
-            },
-            ['Safari', 8.5],
-            ['Opera', 6.2],
-            ['Others', 0.7]
-          ]
-        }
-        ]
-      }
-    )
 
 }

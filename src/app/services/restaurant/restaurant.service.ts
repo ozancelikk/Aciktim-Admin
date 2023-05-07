@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { Restaurant } from 'src/app/models/restaurant/Restaurant';
+import { RestaurantOrderNumber } from 'src/app/models/restaurant/restaurantOrderNumber';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 @Injectable({
@@ -32,5 +33,9 @@ export class RestaurantService {
 
   getPassiveRestaurants(): Observable<ListResponseModel<Restaurant>> {
     return this.httpClient.get<ListResponseModel<Restaurant>>(this.apiURL + "/GetPassiveRestaurantsWithImage");
+  }
+  
+  getRestaurantsOrderNumber():Observable<ListResponseModel<RestaurantOrderNumber>> {
+    return this.httpClient.get<ListResponseModel<RestaurantOrderNumber>>(this.apiURL + "/GetRestaurantsOrderNumber");
   }
 }
