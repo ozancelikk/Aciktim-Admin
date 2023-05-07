@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { MaxOrderDto } from 'src/app/models/order/maxOrderDto';
 import { Order } from 'src/app/models/order/order';
+import { OrdersByDate } from 'src/app/models/order/ordersByDateDto';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 @Injectable({
@@ -28,4 +30,14 @@ export class OrderService {
   getAllOrders() : Observable<ListResponseModel<Order>> {
     return this.httpClient.get<ListResponseModel<Order>>(this.apiURL + "/GetAllOrders");
   }
+  
+  getTodayOrders():Observable<SingleResponseModel<OrdersByDate>> {
+    return this.httpClient.get<SingleResponseModel<OrdersByDate>>(this.apiURL +"/GetTodayOrders");
+  }
+
+  getYesterdayOrders():Observable<SingleResponseModel<OrdersByDate>> {
+    return this.httpClient.get<SingleResponseModel<OrdersByDate>>(this.apiURL +"/GetYesterdayOrders");
+  }
+
+ 
 }
