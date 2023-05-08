@@ -2,9 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category/Category';
+import { CustomerDetails } from 'src/app/models/customer/customerDetails';
 import { MaxOrderDto } from 'src/app/models/order/maxOrderDto';
 import { Order } from 'src/app/models/order/order';
 import { OrdersByDate } from 'src/app/models/order/ordersByDateDto';
+import { Restaurant } from 'src/app/models/restaurant/Restaurant';
 import { RestaurantOrderNumber } from 'src/app/models/restaurant/restaurantOrderNumber';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
@@ -25,19 +27,23 @@ export class DenemeComponent implements OnInit {
   noShow: boolean = false;
   linechart: any;
   piechart: any;
-  maxOrders:MaxOrderDto[];
+  maxOrders: MaxOrderDto[];
   piechartcategory: any;
-  piechartorder:any;
-  piechartmaxorder:any;
+  piechartorder: any;
+  piechartmaxorder: any;
+  customersNumberWhoTodayRegister : number;
+  todayGain: number = 0;
   categories: Category[];
   orderNumbers: any = new Array(0);
+  restaurants:Restaurant[];
+  customers:CustomerDetails[];
 
 
   constructor(private orderService: OrderService, private toastrService: ToastrService,
     private restaurantService: RestaurantService, private categoryService: CategoryService,
-    private customerService:CustomerService) { }
+    private customerService: CustomerService) { }
   ngOnInit(): void {
-    
+
     this.getAllOrders();
     this.createLineChart();
     this.createPieChart();
@@ -46,24 +52,62 @@ export class DenemeComponent implements OnInit {
     this.createPieChartForOrders();
     this.getMax10Orders();
     this.createPieChartForMaxOrders();
+    this.calculateTodayGain();
+    this.getCustomersByTodayRegisterDate();
+    this.getRestaurants();
+    this.getCustomers();
 
   }
 
-  getMax10Orders(successCallBack?:()=>void) {
-    this.customerService.getMax10Orders().subscribe(response=>{
-      response.success ? this.maxOrders = response.data : this.toastrService.error("Bir hata meydana geldi","HATA");
-      if(successCallBack) {
+  getCustomers() {
+    this.customerService.getCustomerDetails().subscribe(response=>{
+      response.success ? this.customers = response.data : this.toastrService.error("Bir hata meydana geldi.","HATA")    
+    })
+
+  }
+
+
+  getCustomersByTodayRegisterDate() {
+    this.customerService.GetCustomersByTodayRegisterDate().subscribe(response=>{
+      response.success ? this.customersNumberWhoTodayRegister = response.data : this.toastrService.error("Bir hata meydana geldi.","HATA")   
+    })
+  }
+
+  getMax10Orders(successCallBack?: () => void) {
+    this.customerService.getMax10Orders().subscribe(response => {
+      response.success ? this.maxOrders = response.data : this.toastrService.error("Bir hata meydana geldi", "HATA");
+      if (successCallBack) {
         successCallBack();
       }
-      
+
     })
+  }
+
+  calculateTodayGain() {
+    const date = new Date();
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+    const formattedDate = `${day}.${month}.${year}`;
+    
+    this.getAllOrders(() => {
+      for (let i = 0; i < this.orders.length; i++) {
+        for (let j = 0; j < this.orders[i].menus.length; j++) {
+          let split = this.orders[i].orderDate.split(/[,\s]+/)[0];
+          if (split == formattedDate ) {
+             this.todayGain+= (((this.orders[i].menus[j].orderPrice) * (this.orders[i].menus[j].quantity)) * 10) / 100
+          }
+        }
+      }
+    })
+
   }
 
   createPieChartForMaxOrders() {
     this.getMax10Orders(() => {
       let data = [];
       for (let i = 0; i < this.maxOrders.length; i++) {
-        data.push([this.maxOrders[i].customerName , this.maxOrders[i].orderNumber]);
+        data.push([this.maxOrders[i].customerName, this.maxOrders[i].orderNumber]);
       }
       this.piechartmaxorder = new Chart
         (
@@ -76,7 +120,7 @@ export class DenemeComponent implements OnInit {
               enabled: false
             },
             title: {
-              text: 'Dün VS Bugün Satış Sayıları'
+              text: 'En Çok Sipariş Veren 10 Kullanıcı'
             },
             tooltip: {
               pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -113,7 +157,7 @@ export class DenemeComponent implements OnInit {
   getOrdersByDate(successCallBack?: () => void) {
     this.orderService.getTodayOrders().subscribe(response => {
       response.success ? this.todayOrders = response.data : this.toastrService.error("Bir hata meydana geldi", "HATA")
-  
+
       this.orderService.getYesterdayOrders().subscribe(response => {
         response.success ? this.yesterdayOrders = response.data : this.toastrService.error("Bir hata meydana geldi", "HATA")
         if (successCallBack) {
@@ -245,6 +289,7 @@ export class DenemeComponent implements OnInit {
 
   splitProfitByMonths(successCallBack?: () => void) {
     this.getAllOrders(() => {
+
       for (let i = 0; i < this.orders.length; i++) {
         const ay = this.orders[i].orderDate.split('.');
         let ayNumber = parseInt(ay[1])
@@ -362,5 +407,12 @@ export class DenemeComponent implements OnInit {
       return ''
     }
   }
+
+  getRestaurants() {
+    this.restaurantService.getActiveRestaurants().subscribe(response=>{
+      response.success ? this.restaurants = response.data : this.toastrService.error("Bir hata meydana geldi.","HATA")
+    })
+  }
+
 
 }
