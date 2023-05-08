@@ -23,6 +23,8 @@ import { OrderlistComponent } from './components/order/orderlist/orderlist.compo
 import { ChartModule } from 'angular-highcharts';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DenemeComponent } from './components/chart/deneme/deneme.component';
+import { MailsComponent } from './components/mails/mails.component';
+import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
 
 
 
@@ -47,6 +49,8 @@ import { DenemeComponent } from './components/chart/deneme/deneme.component';
     OrderPipe,
     OrderCustomerIdPipe,
     DenemeComponent,
+    MailsComponent,
+    MailDetailComponent,
    
   ],
   imports: [

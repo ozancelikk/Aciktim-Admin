@@ -34,5 +34,8 @@ export class CustomerService {
  getMax10Orders():Observable<ListResponseModel<MaxOrderDto>>{
   return this.httpClient.get<ListResponseModel<MaxOrderDto>>(this.apiURL + "/GetCustomerOrdersByOrderNumbers");
 }
+GetCustomersByTodayRegisterDate():Observable<SingleResponseModel<number>> {
+  return this.httpClient.get<SingleResponseModel<number>>(this.apiURL +"/GetCustomersByTodayRegisterDate")
+}
  
 }

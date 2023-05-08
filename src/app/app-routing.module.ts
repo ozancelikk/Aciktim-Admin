@@ -11,11 +11,14 @@ import { OrderlistComponent } from './components/order/orderlist/orderlist.compo
 import { RestaurantorderComponent } from './components/order/restaurant-order/restaurantorder/restaurantorder.component';
 import { OrderdetailComponent } from './components/order/order-detail/orderdetail/orderdetail.component';
 import { DenemeComponent } from './components/chart/deneme/deneme.component';
+import { MailsComponent } from './components/mails/mails.component';
+import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
 
 const routes: Routes = [{
   path: "", component: HomeComponent, children: 
   [
     {path:"" , component:DenemeComponent},
+    {path:"mails" , component:MailsComponent},
     {path: "restaurant", component: RestaurantComponent },
     {path: "customer/list", component: CustomerListComponent },
     {path: "customer/edit/:id", component: CustomerEditComponent },
@@ -26,7 +29,8 @@ const routes: Routes = [{
     {path: "restaurant/edit/:id", component: EditpageComponent},
     {path: "order/orderlist", component: OrderlistComponent},
     {path: "order/restaurantorder", component: RestaurantorderComponent},
-    {path: "order/orderdetails/:id", component: OrderdetailComponent}
+    {path: "order/orderdetails/:id", component: OrderdetailComponent},
+    {path: "mails/mail/:id", component: MailDetailComponent}
 
 
   ]
