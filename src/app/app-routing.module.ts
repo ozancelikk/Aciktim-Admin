@@ -13,11 +13,32 @@ import { OrderdetailComponent } from './components/order/order-detail/orderdetai
 import { DenemeComponent } from './components/chart/deneme/deneme.component';
 import { MailsComponent } from './components/mails/mails.component';
 import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
+
+import { LoginComponent } from './components/auth/login/login.component';
+import { LoginGuardGuard } from './guards/login-guard.guard';
+
 import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
 
+
 const routes: Routes = [{
-  path: "", component: HomeComponent, children: 
+  path: "", component: HomeComponent, canActivate:[LoginGuardGuard], children: 
   [
+
+    {path:"" ,canActivate:[LoginGuardGuard], component:DenemeComponent},
+    {path:"mails" , canActivate:[LoginGuardGuard],component:MailsComponent},
+    {path: "restaurant",canActivate:[LoginGuardGuard], component: RestaurantComponent },
+    {path: "customer/list",canActivate:[LoginGuardGuard], component: CustomerListComponent },
+    {path: "customer/edit/:id",canActivate:[LoginGuardGuard], component: CustomerEditComponent },
+    {path: "customer/edit",canActivate:[LoginGuardGuard], component: CustomerEditComponent },
+    {path: "restaurant",canActivate:[LoginGuardGuard], component: RestaurantComponent},
+    {path: "restaurant/confirm",canActivate:[LoginGuardGuard], component: ListrestaurantComponent},
+    {path: "restaurant/list",canActivate:[LoginGuardGuard], component: EditrestaurantComponent},
+    {path: "restaurant/edit/:id",canActivate:[LoginGuardGuard], component: EditpageComponent},
+    {path: "order/orderlist",canActivate:[LoginGuardGuard], component: OrderlistComponent},
+    {path: "order/restaurantorder", canActivate:[LoginGuardGuard],component: RestaurantorderComponent},
+    {path: "order/orderdetails/:id",canActivate:[LoginGuardGuard], component: OrderdetailComponent},
+    {path: "mails/mail/:id",canActivate:[LoginGuardGuard], component: MailDetailComponent}
+
     {path:"" , component:DenemeComponent},
     {path:"mails" , component:MailsComponent},
     {path: "restaurant", component: RestaurantComponent },
@@ -35,8 +56,11 @@ const routes: Routes = [{
     {path: "admin/adminmanager", component:AdminManagerComponent}
 
 
+
   ]
-}];
+},
+{path:"auth/login" , component:LoginComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
