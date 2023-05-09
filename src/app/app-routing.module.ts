@@ -13,6 +13,7 @@ import { OrderdetailComponent } from './components/order/order-detail/orderdetai
 import { DenemeComponent } from './components/chart/deneme/deneme.component';
 import { MailsComponent } from './components/mails/mails.component';
 import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
+import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
 
 const routes: Routes = [{
   path: "", component: HomeComponent, children: 
@@ -30,7 +31,8 @@ const routes: Routes = [{
     {path: "order/orderlist", component: OrderlistComponent},
     {path: "order/restaurantorder", component: RestaurantorderComponent},
     {path: "order/orderdetails/:id", component: OrderdetailComponent},
-    {path: "mails/mail/:id", component: MailDetailComponent}
+    {path: "mails/mail/:id", component: MailDetailComponent},
+    {path: "admin/adminmanager", component:AdminManagerComponent}
 
 
   ]
