@@ -56,7 +56,7 @@ export class DenemeComponent implements OnInit {
     this.getCustomersByTodayRegisterDate();
     this.getRestaurants();
     this.getCustomers();
-
+    
   }
 
   getCustomers() {
