@@ -25,6 +25,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DenemeComponent } from './components/chart/deneme/deneme.component';
 import { MailsComponent } from './components/mails/mails.component';
 import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
+import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
 
 
 
@@ -51,6 +52,7 @@ import { MailDetailComponent } from './components/mail-detail/mail-detail.compon
     DenemeComponent,
     MailsComponent,
     MailDetailComponent,
+    AdminManagerComponent,
    
   ],
   imports: [

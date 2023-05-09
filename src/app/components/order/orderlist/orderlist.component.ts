@@ -1,4 +1,4 @@
-  import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Order } from 'src/app/models/order/order';
 import { OrderService } from 'src/app/services/order/order.service';
