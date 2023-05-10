@@ -19,7 +19,7 @@ export class LoginGuardGuard implements CanActivate {
       return false;
     }
     for (let i = 0; i < parsedList.length; i++) {
-      if (parsedList[i] === "admin" || parsedList === "suser") {
+      if (parsedList[i] === "admin" || parsedList[i] === "suser") {
         return true;
       }
     }

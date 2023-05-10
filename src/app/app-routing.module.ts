@@ -18,6 +18,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { LoginGuardGuard } from './guards/login-guard.guard';
 
 import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
+import { UserEditComponent } from './components/admin-manager/user-edit/user-edit.component';
+import { SuserGuardGuard } from './guards/suser-guard.guard';
 
 
 const routes: Routes = [{
@@ -37,26 +39,10 @@ const routes: Routes = [{
     {path: "order/orderlist",canActivate:[LoginGuardGuard], component: OrderlistComponent},
     {path: "order/restaurantorder", canActivate:[LoginGuardGuard],component: RestaurantorderComponent},
     {path: "order/orderdetails/:id",canActivate:[LoginGuardGuard], component: OrderdetailComponent},
-    {path: "mails/mail/:id",canActivate:[LoginGuardGuard], component: MailDetailComponent}
-
-    {path:"" , component:DenemeComponent},
-    {path:"mails" , component:MailsComponent},
-    {path: "restaurant", component: RestaurantComponent },
-    {path: "customer/list", component: CustomerListComponent },
-    {path: "customer/edit/:id", component: CustomerEditComponent },
-    {path: "customer/edit", component: CustomerEditComponent },
-    {path: "restaurant", component: RestaurantComponent},
-    {path: "restaurant/confirm", component: ListrestaurantComponent},
-    {path: "restaurant/list", component: EditrestaurantComponent},
-    {path: "restaurant/edit/:id", component: EditpageComponent},
-    {path: "order/orderlist", component: OrderlistComponent},
-    {path: "order/restaurantorder", component: RestaurantorderComponent},
-    {path: "order/orderdetails/:id", component: OrderdetailComponent},
-    {path: "mails/mail/:id", component: MailDetailComponent},
-    {path: "admin/adminmanager", component:AdminManagerComponent}
-
-
-
+    {path: "mails/mail/:id",canActivate:[LoginGuardGuard], component: MailDetailComponent},
+    {path: "admin/adminmanager", component:AdminManagerComponent,canActivate:[LoginGuardGuard,SuserGuardGuard]},
+    {path: "admin/user/:id", component:UserEditComponent,canActivate:[LoginGuardGuard,SuserGuardGuard]},
+    
   ]
 },
 {path:"auth/login" , component:LoginComponent}
