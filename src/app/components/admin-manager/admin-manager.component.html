@@ -3,59 +3,39 @@
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 <h4 style="font-family: 'Lobster Two', cursive;" class="mb-4">Admin Yönetimi</h4>
 <div class="all">
-<div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label">Kullanıcıları ID'Ye Göre Ara...</label>
-  <div class="d-flex justify-content-between">
-    <input [(ngModel)]="filter" type="text" class="form-control" aria-describedby="emailHelp">
-    <button (click)="getbyid(filter)"  style="margin-left: 1rem;background-color:#5D196A;color: white;" class="btn" >Ara</button>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Kullanıcıları ID'Ye Göre Ara...</label>
+    <div class="d-flex justify-content-between">
+      <input [(ngModel)]="filter" type="text" class="form-control" aria-describedby="emailHelp">
+      <button style="margin-left: 1rem;background-color:#5D196A;color: white;" class="btn">Ara</button>
+    </div>
   </div>
-</div>
 
-<table class="table align-middle mb-0 bg-white" *ngIf="user">
-  <thead class="bg-light">
-    <tr>
-      <th>İsim</th>
-      <th>Soy İsim</th>
-      
-      <th>E-Posta</th>
-     
-      <th>Rol Ekle</th>
-      
+  <table class="table align-middle mb-0 bg-white" *ngIf="users">
+    <thead class="bg-light">
+      <tr>
+        <th>İsim</th>
+        <th>Soy İsim</th>
+        <th>E-Posta</th>
+        <th>Detaylar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.firstName}} </td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <i class="fa-solid fa-circle-info" routerLink="/admin/user/{{user.id}}"></i>
+        </td>
+        <td>
+          
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{user.firstName}} </td>
-      <td>{{user.lastName}}</td>      
-      <td>{{user.email}}</td>
-      <td>
-        <i style="color:red; padding-left:20px ;" (click)="dialog.showModal()" class="fa-solid fa-pen-to-square fa-lg fa-lg pointer"></i>
-          <dialog #dialog>
-            <div class="d-flex align-items-center justify-content-center x">
-              <div class="dialog">
-                <h2>Dikkat</h2>
-                <hr>
-                <p>{{user.firstName}} {{user.lastName}}'a Admin rolü vermek istediğinizden emin misiniz?</p>
-                <p>Admin Rolüne sahip kullanıcılar: Kullanıcıları düzenleyebilir, siperişleri iptal edebilir,restoranları düzenleyebilir,restoranları onaylayabilir
-              </div>
-            </div>
-            <button  class="close_button">Onayla</button>
-            <button class="close_button" (click)="dialog.close()">Vazgeç</button>
-          </dialog>
-    
-    </td>
-    <td>
-            
+        </td>
 
-    </td>
-     
-    
-    
+      </tr>
+    </tbody>
 
-    </tr>
-  </tbody>
-
-</table>
+  </table>
 
 </div>

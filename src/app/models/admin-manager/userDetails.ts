@@ -2,9 +2,7 @@ export interface userDetails{
     id:string;
     firstName:string;
     lastName:string;
-    nationalityId:string;
-    birthDay:string;
-    phoneNumber:string;
+    status:boolean;
     email:string;
 
 

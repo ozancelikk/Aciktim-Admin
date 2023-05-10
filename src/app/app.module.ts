@@ -29,6 +29,7 @@ import { MailDetailComponent } from './components/mail-detail/mail-detail.compon
 import { LoginComponent } from './components/auth/login/login.component';
 
 import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
+import { UserEditComponent } from './components/admin-manager/user-edit/user-edit.component';
 
 
 
@@ -60,6 +61,7 @@ import { AdminManagerComponent } from './components/admin-manager/admin-manager.
     LoginComponent,
 
     AdminManagerComponent,
+      UserEditComponent,
 
    
   ],

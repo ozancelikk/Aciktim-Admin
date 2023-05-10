@@ -1,0 +1,85 @@
+<section *ngIf="user">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://i2.wp.com/vdostavka.ru/wp-content/uploads/2019/05/no-avatar.png?fit=512%2C512&ssl=1" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">{{user.firstName}}</h5>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+                <h4 class="p-2">Kullanıcının Rolleri</h4>
+                <hr>
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3" *ngFor="let claim of userClaims">
+                    <p class="mb-0">{{claim.operationClaimName}}</p>
+                    <i (click)="deleteClaim(claim)" class="fa-solid fa-trash"></i>
+                  
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">İsim</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{user.firstName}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Soyİsim</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{user.lastName}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">E-Mail</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{user.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">User ID</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{user.id}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0" style="margin-top: 2.2rem;">
+            <div class="card-body" style="padding:.8rem;">
+                <form [formGroup]="form">
+                <h4 class="p-2">Rol Ekle </h4>
+                <hr>
+                <label>Eklemek istediğiniz rolü seçin: </label>
+                <select style="margin-left:.5rem;" formControlName="operationClaimId" >
+                  <option *ngFor="let claim of claims"  [value]="claim.id">{{claim.name}}</option>
+                </select>
+                <br>
+                <br>
+            </form>
+                <button (click)="addClaim()" class="btn btn-primary">Onayla</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
