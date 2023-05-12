@@ -20,6 +20,8 @@ import { LoginGuardGuard } from './guards/login-guard.guard';
 import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
 import { UserEditComponent } from './components/admin-manager/user-edit/user-edit.component';
 import { SuserGuardGuard } from './guards/suser-guard.guard';
+import { ActiveCommentsComponent } from './components/comments/active-comments/active-comments.component';
+import { PassiveCommentsComponent } from './components/comments/passive-comments/passive-comments.component';
 
 
 const routes: Routes = [{
@@ -42,6 +44,8 @@ const routes: Routes = [{
     {path: "mails/mail/:id",canActivate:[LoginGuardGuard], component: MailDetailComponent},
     {path: "admin/adminmanager", component:AdminManagerComponent,canActivate:[LoginGuardGuard,SuserGuardGuard]},
     {path: "admin/user/:id", component:UserEditComponent,canActivate:[LoginGuardGuard,SuserGuardGuard]},
+    {path: "comments/activecomments", component:ActiveCommentsComponent,canActivate:[LoginGuardGuard]},
+    {path: "comments/passivecomments", component:PassiveCommentsComponent,canActivate:[LoginGuardGuard]},
     
   ]
 },

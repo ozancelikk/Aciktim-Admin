@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<h4 style="font-family: 'Lobster Two', cursive;" class="mb-4">Aktif Yorumlar</h4>
+
+
+
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label">Kullanıcı ID'ye Göre Ara</label>
+  <input [(ngModel)]="filter"  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</div>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Restoran İsmi</th>
+      <th>Kullanıcı İsmi</th>
+      <th>Yorum Başlığı</th>
+      <th>Yorum  İçeriği</th>
+      <th>Yorum Tarihi</th>
+      <th>Kullanıcının Verdiği Puan</th>
+      <th>Yorumu İncele</th>
+      <th>Yorumu Sil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let comment of activeComments|commentPipe:filter">
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{comment.restaurantName}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{comment.customerName}}</p>
+      </td>
+      <td>
+        <span>{{comment.commentTitle}}</span>
+      </td>
+      <td>{{comment.commentContent.slice(0,6)}}...</td>
+      <td>{{comment.commentDate}}</td>
+      <td>
+        {{comment.restaurantRate}}
+      </td>
+      <td>
+        <a style="cursor: pointer;">
+          <i (click)="dialog.showModal()" class="fa-solid fa-magnifying-glass fa-lg"></i>
+        </a>
+      </td>
+      <td><i (click)="deleteComment(comment.id)" style="cursor: pointer;" class="fa-solid fa-trash"></i></td>
+
+      <dialog #dialog>
+        <div class="d-flex align-items-center justify-content-center x">
+          <div class="dialog">
+            <h2>Restoran Bilgileri</h2>
+            <div class="title">Restoran Adı:</div>{{comment.restaurantName}}
+            <hr>
+            <div class="title">Yorumu Yapan Kullanıcı:</div>{{comment.customerName}}
+            <hr>
+            <div class="title">Yorum Başlığı:</div>{{comment.commentTitle}}
+            <hr>
+            <div class="title">Yorum İçeriği:</div>{{comment.commentContent}}
+            <hr>
+            <div class="title">Yorum Tarihi:</div>{{comment.commentDate}}
+            <hr>
+            <div class="title">Verilen Puan:</div> {{comment.restaurantRate}}
+            <hr>
+          </div>
+        </div>
+        <button class="close_button" (click)="dialog.close()">Kapat</button>
+      </dialog>
+    </tr>
+
+    
+
+  </tbody>
+</table>
