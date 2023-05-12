@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerDetails } from 'src/app/models/customer/customerDetails';
@@ -14,6 +14,7 @@ export class CustomerEditComponent implements OnInit{
   customerId:string;
   customer:CustomerDetails;
   updateForm:FormGroup;
+  nationalityId:any;
   constructor(private route: ActivatedRoute,private customerService:CustomerService,
     private toastrService:ToastrService,private formBuilder:FormBuilder,
     private router:Router){}
@@ -30,7 +31,8 @@ export class CustomerEditComponent implements OnInit{
   getCustomerDetailsByCustomerId(customerId:string) {
     this.customerService.getCustomerDetailsByCustomerId(customerId).subscribe(response=>{
       response.success ? this.customer = response.data : null
-      this.updateForm.patchValue(response.data)
+      this.nationalityId = response.data.nationalityId
+      this.updateForm.patchValue(response.data)     
       console.log(this.customer);
        
     })
@@ -44,13 +46,14 @@ export class CustomerEditComponent implements OnInit{
       lastName:["",Validators.required],
       phoneNumber:["",Validators.required],
       registerDate:["",Validators.required],
-      nationalityId:["",Validators.required],
+      nationalityId:[this.nationalityId,Validators.required],
       birthDay:["",Validators.required]
     })
   }
 
   updateUser() {
     let model = Object.assign({},this.updateForm.value)
+    
     this.customerService.updateCustomer(model).subscribe(response=>{
       response.success ? this.toastrService.success("Kullanıcı Başarıyla Güncellendi!","BAŞARILI")  : null
       setTimeout(()=>{
