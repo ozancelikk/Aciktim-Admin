@@ -22,6 +22,8 @@ import { UserEditComponent } from './components/admin-manager/user-edit/user-edi
 import { SuserGuardGuard } from './guards/suser-guard.guard';
 import { ActiveCommentsComponent } from './components/comments/active-comments/active-comments.component';
 import { PassiveCommentsComponent } from './components/comments/passive-comments/passive-comments.component';
+import { RestaurantsupportComponent } from './components/restaurantsupport/restaurantsupport.component';
+import { RestaurantmaildetailComponent } from './components/restaurantmaildetail/restaurantmaildetail.component';
 
 
 const routes: Routes = [{
@@ -46,7 +48,8 @@ const routes: Routes = [{
     {path: "admin/user/:id", component:UserEditComponent,canActivate:[LoginGuardGuard,SuserGuardGuard]},
     {path: "comments/activecomments", component:ActiveCommentsComponent,canActivate:[LoginGuardGuard]},
     {path: "comments/passivecomments", component:PassiveCommentsComponent,canActivate:[LoginGuardGuard]},
-    
+    {path: "mails/restaurantmails", component:RestaurantsupportComponent,canActivate:[LoginGuardGuard]},
+    {path: "mails/restaurantmails/:id", component:RestaurantmaildetailComponent,canActivate:[LoginGuardGuard]},
   ]
 },
 {path:"auth/login" , component:LoginComponent}

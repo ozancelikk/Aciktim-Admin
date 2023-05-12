@@ -31,6 +31,8 @@ import { UserEditComponent } from './components/admin-manager/user-edit/user-edi
 import { ActiveCommentsComponent } from './components/comments/active-comments/active-comments.component';
 import { PassiveCommentsComponent } from './components/comments/passive-comments/passive-comments.component';
 import { CommentPipePipe } from './pipes/comment-pipe.pipe';
+import { RestaurantsupportComponent } from './components/restaurantsupport/restaurantsupport.component';
+import { RestaurantmaildetailComponent } from './components/restaurantmaildetail/restaurantmaildetail.component';
 
 
 
@@ -65,6 +67,8 @@ import { CommentPipePipe } from './pipes/comment-pipe.pipe';
     ActiveCommentsComponent,
     PassiveCommentsComponent,
     CommentPipePipe,
+    RestaurantsupportComponent,
+    RestaurantmaildetailComponent,
 
 
   ],
