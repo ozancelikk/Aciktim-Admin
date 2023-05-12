@@ -46,6 +46,19 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item mb-3">
+                <div class="dropdown">
+                    <button style="color: white;" class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-utensils"></i> <span> Yorum İşlemleri</span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" routerLink="comments/activecomments">Aktif Yorumlar </a></li>
+                        <li><a class="dropdown-item" routerLink="comments/passivecomments">Pasif Yorumlar</a></li>
+                       
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item">
                 <a style="color: white;" class="btn" type="button" routerLink="/mails"
                          aria-expanded="false">

@@ -8,9 +8,9 @@ import { RestaurantComponent } from './components/restaurant/restaurant.componen
 import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
 import { CustomerEditComponent } from './components/customer/customer-edit/customer-edit.component';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CustomerPipePipe } from './pipes/customer-pipe.pipe';
-import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListrestaurantComponent } from './components/restaurant/restaurant-list/confirm-restaurant/listrestaurant.component';
 import { EditrestaurantComponent } from './components/restaurant/restaurant-edit/editrestaurant/editrestaurant.component';
 import { EditpageComponent } from './components/restaurant/edit-page/editpage/editpage.component';
@@ -25,11 +25,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DenemeComponent } from './components/chart/deneme/deneme.component';
 import { MailsComponent } from './components/mails/mails.component';
 import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
-
 import { LoginComponent } from './components/auth/login/login.component';
-
 import { AdminManagerComponent } from './components/admin-manager/admin-manager.component';
 import { UserEditComponent } from './components/admin-manager/user-edit/user-edit.component';
+import { ActiveCommentsComponent } from './components/comments/active-comments/active-comments.component';
+import { PassiveCommentsComponent } from './components/comments/passive-comments/passive-comments.component';
+import { CommentPipePipe } from './pipes/comment-pipe.pipe';
+
 
 
 
@@ -57,13 +59,14 @@ import { UserEditComponent } from './components/admin-manager/user-edit/user-edi
     DenemeComponent,
     MailsComponent,
     MailDetailComponent,
-
     LoginComponent,
-
     AdminManagerComponent,
-      UserEditComponent,
+    UserEditComponent,
+    ActiveCommentsComponent,
+    PassiveCommentsComponent,
+    CommentPipePipe,
 
-   
+
   ],
   imports: [
     BrowserModule,
