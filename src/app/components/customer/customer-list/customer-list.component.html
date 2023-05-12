@@ -25,7 +25,6 @@
           <th>Kayıt Tarihi</th>
           <th>Düzenle</th>
           <th>Sil</th>
-
         </tr>
       </thead>
       <tbody>
@@ -40,14 +39,14 @@
             </div>
           </td>
           <td>
-            <p class="fw-normal mb-1">{{customer.nationalityId}}</p>
+            <p class="fw-normal mb-1">{{customer.nationalityId==null ? "Bilgi Yok"  : customer?.nationalityId?.slice(0,2) + "****" + customer?.nationalityId?.slice(-2) }}</p>   
           </td>
           <td>
             <span>{{customer.mailAddress}}</span>
           </td>
-          <td>{{customer.birthDay}}</td>
+          <td>{{customer.birthDay ==null ?  "Bilgi Yok" :customer.birthDay  }}</td>
           <td>
-            {{customer.phoneNumber}}
+            {{customer.phoneNumber==null ?  "Bilgi Yok" :customer.phoneNumber }}
           </td>
           <td>
             {{customer.registerDate}}
