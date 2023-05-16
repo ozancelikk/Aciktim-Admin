@@ -39,5 +39,22 @@ export class OrderService {
     return this.httpClient.get<SingleResponseModel<OrdersByDate>>(this.apiURL +"/GetYesterdayOrders");
   }
 
+  getOrderDetailsByCustomerId(customerId:string):Observable<ListResponseModel<Order>> {
+    return this.httpClient.get<ListResponseModel<Order>>(this.apiURL + "/GetOrdersByCustomerId?customerId=" + customerId)
+  }
+
+  getCustomerOrderDetailsByDate(start:string,end:string,customerId:string):Observable<ListResponseModel<Order>> {
+    return this.httpClient.get<ListResponseModel<Order>>(this.apiURL +"/GetCustomerOrderDetailsByDate?start=" + start + "&end=" + end +"&customerId=" + customerId)
+  }
+
+  getRestaurantOrderDetailsByDate(start:string,end:string,restaurantId:string):Observable<ListResponseModel<Order>> {
+    return this.httpClient.get<ListResponseModel<Order>>(this.apiURL +"/GetRestaurantOrderDetailsByDate?start=" + start + "&end=" + end +"&restaurantId=" + restaurantId)
+  }
+
+  GetOrdersByRestaurantId(restaurantId:string):Observable<ListResponseModel<Order>> {
+    return this.httpClient.get<ListResponseModel<Order>>(this.apiURL + "/GetOrdersByRestaurantId?restaurantId=" + restaurantId)
+  }
+
+
  
 }

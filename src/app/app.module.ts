@@ -33,6 +33,7 @@ import { PassiveCommentsComponent } from './components/comments/passive-comments
 import { CommentPipePipe } from './pipes/comment-pipe.pipe';
 import { RestaurantsupportComponent } from './components/restaurantsupport/restaurantsupport.component';
 import { RestaurantmaildetailComponent } from './components/restaurantmaildetail/restaurantmaildetail.component';
+import { RestaurantCustomerNamePipePipe } from './pipes/restaurant-customer-name-pipe.pipe';
 
 
 
@@ -69,6 +70,7 @@ import { RestaurantmaildetailComponent } from './components/restaurantmaildetail
     CommentPipePipe,
     RestaurantsupportComponent,
     RestaurantmaildetailComponent,
+    RestaurantCustomerNamePipePipe,
 
 
   ],

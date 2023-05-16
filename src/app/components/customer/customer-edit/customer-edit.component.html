@@ -1,85 +1,169 @@
-
-<div class="container mt-4" *ngIf="customer">
-    <div class="row gutters">
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar d-flex justify-content-center">
-                                <img width="200" height="200"
-                                    src="https://i2.wp.com/vdostavka.ru/wp-content/uploads/2019/05/no-avatar.png?fit=512%2C512&ssl=1"
-                                    alt="Maxwell Admin">
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <div>
-                                    <h5 class="user-name">{{customer.firstName}} {{customer.lastName}}</h5>
-                                    <h6 class="user-email">{{customer.mailAddress}}</h6>
+<section  *ngIf="customer && orders">
+    <div class="container mt-4">
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar d-flex justify-content-center">
+                                    <img width="200" height="200"
+                                        src="https://i2.wp.com/vdostavka.ru/wp-content/uploads/2019/05/no-avatar.png?fit=512%2C512&ssl=1"
+                                        alt="Maxwell Admin">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div>
+                                        <h5 class="user-name">{{customer.firstName}} {{customer.lastName}}</h5>
+                                        <h6 class="user-email">{{customer.mailAddress}}</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <form [formGroup]="updateForm">
-                    <div class="row gutters">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <h6 class="mb-2 text-primary">Kullanıcı Detayları</h6>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="fullName">İsim</label>
-                                <input type="text" formControlName="firstName" class="form-control" id="fullName" placeholder="İsim">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <form [formGroup]="updateForm">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary">Kullanıcı Detayları</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="fullName">İsim</label>
+                                        <input type="text" formControlName="firstName" class="form-control"
+                                            id="fullName" placeholder="İsim">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="eMail">Soyisim</label>
+                                        <input type="text" class="form-control" formControlName="lastName"
+                                            placeholder="Soyisim">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="phone">Telefon Numarası</label>
+                                        <input type="text" class="form-control" id="phone" formControlName="phoneNumber"
+                                            placeholder="Telefon Numarası">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="website">Mail Adresi</label>
+                                        <input type="url" class="form-control" formControlName="mailAddress"
+                                            placeholder="Mail Adresi">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                            <div class="form-group">
-                                <label for="eMail">Soyisim</label>
-                                <input type="text" class="form-control" formControlName="lastName"  placeholder="Soyisim">
+                            <div class="row gutters">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="Street">TC Kimlik No</label>
+                                        <input type="name" class="form-control" [disabled]="true" id="Street"
+                                            placeholder="{{customer.nationalityId.slice(0, 2) + '*'.repeat( customer.nationalityId.length - 4) +  customer.nationalityId.slice(-2)}}">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="ciTy">Doğum Tarihi</label>
+                                        <input type="name" class="form-control" formControlName="birthDay"
+                                            placeholder="Doğum Tarihi">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                            <div class="form-group">
-                                <label for="phone">Telefon Numarası</label>
-                                <input type="text" class="form-control" id="phone" formControlName="phoneNumber" placeholder="Telefon Numarası">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <input style="background-color:#5D196A;" class="btn" style="margin-right: 15px;"
+                                            type="reset" value="Vazgeç">
+                                        <button style="background-color:#5D196A;color: white;" type="button"
+                                            (click)="updateUser()" id="submit" name="submit"
+                                            class="btn">Güncelle</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="website">Mail Adresi</label>
-                                <input type="url" class="form-control" formControlName="mailAddress" placeholder="Mail Adresi">
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="row gutters">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="Street">TC Kimlik No</label>
-                                <input type="name" class="form-control"   [disabled]="true" id="Street" placeholder="{{customer.nationalityId.slice(0, 2) + '*'.repeat( customer.nationalityId.length - 4) +  customer.nationalityId.slice(-2)}}">
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                            <div class="form-group">
-                                <label for="ciTy">Doğum Tarihi</label>
-                                <input type="name" class="form-control" formControlName="birthDay" placeholder="Doğum Tarihi">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row gutters">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="text-right">
-                                <input style="background-color:#5D196A;" class="btn" style="margin-right: 15px;" type="reset" value="Vazgeç">
-                                <button style="background-color:#5D196A;color: white;" type="button" (click)="updateUser()" id="submit" name="submit" class="btn">Güncelle</button>
-                            </div>
-                        </div>  
-                    </div>
-                </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <br><br><br>
+    <h3 style="margin-left: 2rem;">Kullanıcının Siparişleri</h3>
+    <hr>
+
+    <div class="d-flex" style="justify-content: space-evenly;">
+        <form>
+            <label for="birthday">Başlangıç Tarihi : </label>
+            <input [(ngModel)]="start" type="date" style="margin-left: .4rem;" id="birthday" name="birthday">
+    
+            <label style="margin-left: 3rem;" for="birthday">Bitiş Tarihi : </label>
+            <input [(ngModel)]="end" type="date" style="margin-left: .4rem;" id="birthday" name="birthday">
+    
+            <button (click)="getCustomerOrderDetailsByDate(start,end)" style="margin-left:1rem;"
+                class="btn btn-primary">Tarihe Göre Ara</button> 
+                
+        </form>
+        <p style="margin-top: .4rem;">VEYA</p>
+        <div class="mb-3">
+            <input style="width: 500px;" [(ngModel)]="filter" type="email" placeholder="Restoran İsmine Göre Ara" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+          </div>
+
+          <button (click)="getOrdersByCustomerId()" class="btn btn-xs btn-primary" style="margin-bottom: 1rem;">Tüm Siparişler İçin Tıkla</button>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let order of orders|order:filter">
+            <div class="main">
+                <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
+                    <div class="text-uppercase">
+                        <p>SİPARİŞ DETAYI</p>
+                    </div>
+                    <div class="h4">{{order.orderDate}}</div>
+                    <div class="pt-1">
+                        <p>Sipariş ID : {{order.id}}</p>
+                    </div>
+                </div>
+                <div class="wrapper bg-white">
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <div style="font-weight: bold;">sipariş verilen restoran : {{order.restaurantName}}</div>
+                        <div style="font-weight: bold;">Sipariş Durumu : {{order.orderStatus}}</div>
+
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <div style="font-weight: bold;" class="text-uppercase text-muted">menüler</div>
+
+                    </div>
+
+                    <div *ngFor="let menus of order.menus">
+                        <div class="d-flex justify-content-start align-items-center list py-1">
+                            <div><b>{{menus.quantity}}x</b></div>
+                            <div class="mx-3">
+                                <img src={{menus.menuImage}} alt="apple" class="rounded-circle" width="30" height="30">
+                            </div>
+                            <div class="order-item">{{menus.menuName.charAt(0).toUpperCase() + menus.menuName.slice(1)}}
+                            </div>
+                            <div style="margin-left: auto;">{{menus.orderPrice}} TL</div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="float: right;">Toplam Fiyat : {{calculatePrice(order)}} TL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top: 5rem;" role="alert" *ngIf="orders.length == 0">
+        Uygun bir sipariş bulunamadı!
+    </div>
+
+</section>
